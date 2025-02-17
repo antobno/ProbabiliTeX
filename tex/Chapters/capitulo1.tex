@@ -1,0 +1,647 @@
+\chapter{PROBABILIDAD}
+\printchaptertableofcontents
+
+En nuestras conversaciones cotidianas, el término \emph{probabilidad} es una medida de la creencia de que un evento futuro pueda ocurrir. Aceptamos esto como una interpretación significativa y práctica de probabilidad pero buscamos un concepto más claro de su contexto, de cómo se mide y cómo ayuda a hacer inferencias.
+
+El concepto de probabilidad es necesario para trabajar con mecanismos físicos, biológicos o sociales que generan observaciones que no se pueden predecir con certeza. Por ejemplo, la presión sanguínea de una persona en un punto dado en el tiempo no se puede predecir con certeza y nunca sabemos la carga exacta que un puente resistirá antes de desplomarse en un río. Eventos de esa naturaleza no se pueden predecir con certeza, pero la frecuencia relativa con la que ocurren en una larga serie de intentos es a veces sorprendentemente estable. Los eventos que poseen esta propiedad reciben el nombre de eventos \emph{aleatorios} o \emph{estocásticos}.
+
+Esta frecuencia relativa a largo plazo proporciona una medida intuitivamente significativa de nuestra creencia de que ocurrirá un evento aleatorio si se hace una observación futura. Es imposible, por ejemplo, predecir con certeza que una moneda normal caiga de cara en un solo tiro, pero estaríamos dispuestos a decir con un grado razonable de confianza que la fracción de caras en una larga serie de intentos sería muy cercana a $0.5$. Que esta frecuencia relativa se use comúnmente como medida de la creencia en el resultado de un solo tiro es evidente cuando consideramos la probabilidad desde el punto de vista de un jugador. Éste arriesga dinero en un solo tiro de una moneda, no en una larga serie de tiros. La frecuencia relativa de que aparezca una cara en una larga serie de tiros, que un jugador llama probabilidad de una cara, le da una medida de la probabilidad de ganar en un solo tiro. Si la moneda estuviera sesgada y diera $90\%$ de caras en una serie larga, el jugador consideraría que la probabilidad de cara es $0.9$ y confiaría en ese resultado en un solo intento.
+
+El concepto de frecuencia relativa de probabilidad, aunque intuitivamente significativo, no da una definición rigurosa de probabilidad. Se han propuesto muchos otros conceptos de probabilidad, incluyendo el de probabilidad subjetiva que permite que la probabilidad de un evento varíe dependiendo de la persona que efectúe la evaluación. No obstante, para nuestros fines, aceptamos una interpretación basada en la frecuencia relativa como medida significativa de nuestra idea de que ocurrirá un evento.
+
+\section{Notación y conceptos básicos de conjuntos}
+
+Para nombrar conjuntos, generalmente se emplean letras mayúsculas $A$, $B$, $C$, $D$, $\dots$, y para nombrar a los elementos de un conjunto, si es el caso, se emplean usualmente letras minúsculas $a, b, c, d, \dots$. Para decir que un objeto $x$ es elemento de un conjunto $A$, escribiremos $x \in A$ y leemos: $x$ es elemento de $A$ o $x$ está en $A$ o $x$ pertenece a $A$. Para decir que un objeto $x$ no es elemento de un conjunto $A$, escribiremos $x \notin A$, y leemos: $x$ no es elemento de $A$ o $x$ no está en $A$ o $x$ no pertenece a $A$.
+
+\subsection{Subconjuntos e igualdad de conjuntos}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Decimos que $A$ es subconjunto de $B$, y escribimos $A \subset B$, si cada elemento de $A$, es también elemento de $B$.
+\end{definicion}
+
+Observemos que la negación de que $A$ es subconjunto de $B$, es la negación de que cada elemento de $A$ es también elemento de $B$. Por tanto, $A$ no es subconjunto de $B$ si existe al menos un elemento de $A$ que no es elemento de $B$. En lugar de $A \subset B$ también se escribe $B \supset A$, y en cualquier caso se lee: $A$ es subconjunto de $B$ o $A$ está contenido en $B$ o $B$ contiene a $A$. Para decir que $A$ no es subconjunto de $B$ escribimos $A \not \subset B$ o $B \not \supset A$, y en cualquier caso se lee: $A$ no es subconjunto de $B$ o $A$ no está contenido en $B$ o $B$ no contiene a $A$. Simbólicamente se tiene que:
+$$(A \subset B) \Longleftrightarrow (\forall x, x \in A \Longrightarrow x \in B)$$
+y
+$$(A \not \subset B) \Longleftrightarrow (\exists x \text{ tal que } x \in A \text{ y } x \notin B).$$
+\begin{examplebox}{}{}
+    Si
+    \begin{align*}
+        A & = \{x \mid x \text { es número real y }|x| \leq 3\}, \\
+        B & = \{x \mid x \text { es número real y }|x| \leq 4\}
+    \end{align*}
+    entonces $A \subset B$ y $B \not \subset A$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    \begin{align*}
+        A & = \{1, 2\}, \\
+        B & = \{1, 2, 2, 1\}
+    \end{align*}
+    entonces $A \subset B$ y $B \subset A$.
+\end{examplebox}
+
+\begin{prop}{}{alalala}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \subset A$.
+        \item $(A \subset B$ y $B \subset C) \Longrightarrow A \subset C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Es inmediato.
+        \item Si $A \subset B$ y $B \subset C$, entonces $(x \in A \Longrightarrow x \in B)$ y $(x \in B \Longrightarrow x \in C)$, por tanto $(x \in A \Longrightarrow x \in C)$, de donde se sigue que $A \subset C$.
+    \end{enumerate}
+\end{prop}
+
+\newpage
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Decimos que $A$ es igual a $B$, y escribimos $A = B$, si $A \subset B$ y $B \subset A$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(A = B) \Longleftrightarrow (A \subset B \text{ y } B \subset A).$$
+Observemos que la negación de que los conjuntos $A$ y $B$ son iguales, lo que se expresa escribiendo $A \neq B$, y que se lee: $A$ no es igual a $B$ o $A$ es distinto de $B$, es la negación de que $[A \subset B$ y $B \subset A]$. En consecuencia,
+$$[A \neq B] \Longleftrightarrow[A \not \subset B \text{ o } B \not \subset A].$$
+Es decir,
+$$[A \neq B] \Longleftrightarrow[(\exists x \text{ tal que } x \in A \text { y } x \notin B) \text { o }(\exists x \text{ tal que } x \in B \text{ y } x \notin A)].$$
+\begin{examplebox}{}{}
+    Si
+    $$A = \left\{ x \mid x \text{ es número real y } x^2 - 1 = 0 \right\}$$
+    y
+    $$B = \{ -1,  1 \},$$
+    entonces $A = B$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \left\{ x \mid x \text{ es número primo y } x>2 \right\}$$
+    y
+    $$B = \left\{ x \mid x \text{ es número impar} \right\},$$
+    entonces $A \subset B$ y $B \not\subset A$, por tanto $A \neq B$.
+\end{examplebox}
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A = A$.
+        \item $A = B \Longrightarrow B = A$.
+        \item $(A = B$ y $B = C) \Longrightarrow A = C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \Longrightarrow A \subset A$ y $A \subset A \Longrightarrow A=A$.
+        \item $A=B \Longrightarrow A \subset B$ y $B \subset A \Longrightarrow B \subset A$ y $A \subset B \Longrightarrow$ $B=A$.
+        \item $A=B$ y $B=C \Longrightarrow(A \subset B$ y $B \subset A)$ y $(B \subset C$ y $C \subset B)$. Entonces $(A \subset B$ y $B \subset C)$ y $(C \subset B$ y $B \subset A)$. Por (ii) de la proposición \ref{prop:alalala}, se sigue $A \subset C$ y $C \subset A \Longrightarrow A=C$.
+    \end{enumerate}
+\end{prop}
+
+\subsection{El conjunto vacío}
+
+\begin{definicion}{}{}
+    Para cada conjunto $A$, definimos el conjunto
+    $$\varnothing_A = \{x \mid x \in A \text { y } x \neq x\},$$
+    el cual es subconjunto de $A$ y se le llama subconjunto vacío (o nulo) de $A$.
+\end{definicion}
+
+\begin{prop}{}{}
+    Si $A$ y $B$ son conjuntos, entonces
+    $$\varnothing_A = \varnothing_B.$$
+
+    \tcblower
+    \demostracion Se deja como ejercicio al lector.
+\end{prop}
+
+\newpage
+
+\begin{definicion}{}{}
+    Al único conjunto que no posee elementos, se le llama conjunto vacío y se le denota por $\varnothing$.
+\end{definicion}
+
+El conjunto $\varnothing$ es subconjunto de cualquier conjunto, es decir, para cualquier conjunto $A$, $\varnothing \subset A$. Así que, si $A$ es conjunto no vacío, entonces al menos tiene como subconjuntos a $\varnothing$ y a $A$ mismo, los cuales se llaman \emph{subconjuntos impropios} de $A$.
+
+\begin{definicion}{}{}
+    Decimos que un conjunto $B$ es subconjunto propio de un conjunto $A$, si $B \neq \varnothing$, $B \subset A$ y $B \neq A$.
+\end{definicion}
+
+Observemos que
+$$(B \subset A \text{ y } B \neq A) \Longleftrightarrow(B \subset A \text{ y } A \not \subset B).$$
+
+\subsection{La unión e intersección de conjuntos}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos la unión de $A$ y $B$, denotada por $A \cup B$, como el conjunto
+    $$A \cup B = \{x \mid x \in A \text{ o } x \in B\}.$$
+    La expresión $A \cup B$, se lee: $A$ unión $B$ o la unión de $A$ y $B$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(x \in A \cup B) \Longleftrightarrow(x \in A \text{ o } x \in B)$$
+y
+$$(x \notin A \cup B) \Longleftrightarrow(x \notin A \text{ y } x \notin B).$$
+\begin{examplebox}{}{}
+    Si
+    $$A = \{1,  3\}$$
+    y
+    $$B = \{0,  1,  2\},$$
+    entonces $A \cup B = \{0,  1,  2,  3\}$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si $A = \varnothing$ y $B = \varnothing$, entendemos que
+    $$A \cup B = \varnothing.$$
+\end{examplebox}
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cup A = A$.
+        \item $A \cup B = B \cup A$.
+        \item $\varnothing \cup A = A$.
+        \item $(A \cup B) \cup C = A \cup(B \cup C)$.
+        \item $A \subset A \cup B$ y $B \subset A \cup B$.
+        \item $(A \subset C$ y $B \subset C) \Longleftrightarrow A \cup B \subset C$.
+        \item $A \subset B \Longleftrightarrow A \cup B=B$.
+        \item $A \subset B \Longrightarrow A \cup C \subset B \cup C$.
+        \item $A \subset B$ y $C \subset D \Longrightarrow A \cup C \subset B \cup D$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Solo se demostrará (viii), los demás se dejan como ejercicio al lector.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item[viii.] $x \in A \cup C \Longrightarrow x \in A$ o $x \in C \Longrightarrow x \in B$ o $x \in C \Longrightarrow x \in B \cup C$.
+    \end{enumerate}
+\end{prop}
+
+\newpage
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos la intersección de $A$ y $B$, denotada por $A \cap B$, como el conjunto
+    $$A \cap B = \{x \mid x \in A \text { y } x \in B\}.$$
+    La expresión $A \cap B$, se lee: $A$ intersección $B$ o la intersección de $A$ y $B$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(x \in A \cap B) \Longleftrightarrow(x \in A \text { y } x \in B)$$
+y
+$$(x \notin A \cap B) \Longleftrightarrow(x \notin A \text { o } x \notin B).$$
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{1,  2,  3\}$$
+    y
+    $$B = \{0,  1,  2\},$$
+    entonces $A \cap B = \{1,  2\}$.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{x \mid x \text{ es número par}\}$$
+    y
+    $$B = \{x \mid x \text{ es número impar}\},$$
+    entonces $A \cap B = \varnothing$.
+\end{examplebox}
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cap A=A$.
+        \item $A \cap B=B \cap A$.
+        \item $\varnothing \cap A=\varnothing$.
+        \item $(A \cap B) \cap C=A \cap(B \cap C)$.
+        \item $A \cap B \subset A$ y $A \cap B \subset B$.
+        \item $(C \subset A$ y $C \subset B) \Longleftrightarrow C \subset A \cap B$.
+        \item $(A \subset B) \Longleftrightarrow(A \cap B=A)$.
+        \item $A \subset B \Longrightarrow A \cap C \subset A \cap C$.
+        \item $A \subset B$ y $C \subset D \Longrightarrow A \cap C \subset B \cap D$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se proponen como ejercicio al lector.
+\end{prop}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Decimos que $A$ y $B$ son ajenos, si $A \cap B = \varnothing$.
+\end{definicion}
+
+Observemos que el conjunto vacío es ajeno con cualquier conjunto.
+
+La siguiente proposición enuncia las propiedades distributivas de la unión respecto de la intersección, y viceversa.
+
+\begin{prop}{}{}
+    Si $A$, $B$ y $C$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cap(B \cup C) = (A \cap B) \cup(A \cap C)$.
+        \item $A \cup(B \cap C) = (A \cup B) \cap(A \cup C)$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Por definición de igualdad, debemos probar que
+        $$A \cap(B \cup C) \subset(A \cap B) \cup(A \cap C)$$
+        y que
+        $$(A \cap B) \cup(A \cap C) \subset A \cap(B \cup C).$$
+        En este caso podemos probar simultáneamente ambas contenciones. De esta forma, tenemos que
+        \begin{align*}
+            x \in A \cap(B \cup C) & \Longleftrightarrow x \in A \text { y } x \in(B \cup C) \\ 
+            & \Longleftrightarrow x \in A \text { y }(x \in B \text { o } x \in C) \\ 
+            & \Longleftrightarrow (x \in A \text { y } x \in B) \text { o }(x \in A \text { y } x \in C) \\ 
+            & \Longleftrightarrow x \in A \cap B \text { o } x \in A \cap C \\ 
+            & \Longleftrightarrow x \in(A \cap B) \cup(A \cap C)
+        \end{align*}
+        \item Para demostrar la igualdad, debemos verificar ambas contenciones. Primero, debemos probar que
+        $$A \cup(B \cap C) \subset (A \cup B) \cap (A \cup C).$$
+        Luego, debemos mostrar que
+        $$(A \cup B) \cap (A \cup C) \subset A \cup(B \cap C).$$
+        Pero también podemos proceder de la siguiente manera:
+        \begin{align*}
+            (A \cup B) \cap(A \cup C) & =[(A \cup B) \cap A] \cup[(A \cup B) \cap C] \\
+            & =[A] \cup[(A \cap C) \cup(B \cap C)] \\
+            & =[A \cup(A \cap C)] \cup(B \cap C) \\
+            & =A \cup(B \cap C)
+        \end{align*}
+    \end{enumerate}
+\end{prop}
+
+\subsection{Diferencia de conjuntos}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos la diferencia de $A$ y $B$, denotada por $A - B$, como el conjunto
+    $$A - B = \{x \mid x \in A \text { y } x \notin B\}.$$
+    La expresión $A - B$ se lee: $A$ menos $B$ o la diferencia de $A$ y $B$.
+\end{definicion}
+
+Simbólicamente se tiene que:
+$$(x \in A - B) \Longleftrightarrow(x \in A \text{ y } x \notin B)$$
+y
+$$(x \notin A - B) \Longleftrightarrow(x \notin A \text{ o } x \in B).$$
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{1,  2,  3,  4,  5,  6\} \quad \text{ y } \quad B = \{2,  4,  6,  8,  10\},$$
+    entonces
+    $$A - B = \{1,  3,  5\} \quad \text{ y } \quad B - A = \{8,  10\}.$$
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Si
+    $$A = \{x \mid x \text { es número natural}\} \quad \text{ y } \quad B = \{x \mid x \text { es número par}\},$$
+    entonces 
+    $$A - B = \{x \mid x \text { es número impar}\} \quad \text{ y } \quad B - A = \varnothing.$$
+\end{examplebox}
+
+De los ejemplos anteriores se deduce que, en general,
+$$A - B \neq B - A;$$\newpage\noindent
+es decir, que la diferencia de conjuntos no es conmutativa. Esto significa que el orden en el que se restan los conjuntos importa, ya que restar $B$ de $A$ no produce el mismo resultado que restar $A$ de $B$. Además, la diferencia de conjuntos no es asociativa, es decir, en general,
+$$(A - B) - C \neq A - (B - C).$$
+Esto implica que la forma en que agrupamos los conjuntos al restarlos también afecta el resultado.
+
+\begin{prop}{}{}
+    Si $A$ y $B$ son conjuntos, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A - A = \varnothing$.
+        \item $A - \varnothing = A$.
+        \item $A - B \subset A$.
+        \item $A \subset B \Longleftrightarrow A - B = \varnothing$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se dejan como ejercicio al lector.
+\end{prop}
+
+\subsection{Complemento de un conjunto}
+
+\begin{definicion}{}{}
+    Sean $A$ y $B$ conjuntos. Definimos el complemento de $A$ relativo a $B$, denotado por $\mathcalm{C}_B(A)$, como el conjunto
+    $$\mathcalm{C}_B(A) = B - A.$$
+\end{definicion}
+
+Siempre que trabajamos con conjuntos, podemos suponer que estos son subconjuntos de otro conjunto ``más grande'' denominado \emph{conjunto universal}. Tal conjunto universal depende del discurso, esto es, de los conjuntos con que se trabaje en una situación dada. En general llamaremos $S$ al conjunto universal de un discurso, y esto significa que los conjuntos que se mencionen en el discurso, serán subconjuntos de $S$. Lo anterior permitirá simplificar la escritura cuando hablemos del complemento de un conjunto $A$, relativo al conjunto universal $S$; pues en lugar de $\mathcalm{C}_S(A)$, escribiremos simplemente $\mathcalm{C}(A)$ o $A^C$. Por tanto
+$$A^C = S - A.$$
+Vamos a convenir en escribir
+$$x \in A^C \Longleftrightarrow x \notin A,$$
+en lugar de
+$$x \in A^C \Longleftrightarrow x \in S \text{ y } x \notin A,$$
+y por tanto
+$$x \notin A^C \Longleftrightarrow x \in A.$$
+
+\begin{prop}{}{}
+    Si $A$ es un conjunto y $S$ es el conjunto universal, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A \cup A^C = S$.
+        \item $A \cap A^C = \varnothing$.
+        \item $A - A^C = A$.
+        \item $\left(A^C\right)^C = A$.
+        \item $\varnothing^C = S$.
+        \item $S^C = \varnothing$.
+        \item $A \cup S = S$.
+        \item $A \cap S = A$.
+        \item $A - S = \varnothing$.
+        \item $A - B = A \cap B^C$.
+        \item $A \subset B \Longleftrightarrow B^C \subset A^C$.
+        \item $A \subset B^C \Longleftrightarrow B \subset A^C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Solo se demostrará (i), los demás incisos se dejan como ejercicio al lector.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Por definición,
+        $$A^C = \{x \in S \mid x \notin A\}.$$
+        Ahora, consideremos
+        $$A \cup A^C = \left\{x \in S \mid x \in A \text{ o } x \in A^C\right\}.$$
+        Dado que $A$ y $A^C$ cubren todos los elementos del conjunto universal $S$, cualquier elemento $x \in S$ estará en $A$ o en $A^C$. Por lo tanto
+        $$A \cup A^C = S.$$
+    \end{enumerate}
+\end{prop}
+
+El siguiente teorema es conocido como el Teorema de De Morgan. Este teorema establece las relaciones entre las operaciones de unión e intersección de conjuntos y sus complementos, proporcionando una herramienta fundamental en la teoría de conjuntos y la lógica matemática.
+
+\begin{theorem}{}{}
+    Si $A$ y $B$ son conjuntos y $S$ es el conjunto universal, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $(A \cup B)^C = A^C \cap B^C$.
+        \item $(A \cap B)^C = A^C \cup B^C$.
+    \end{enumerate}
+    \tcblower
+    \demostracion
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Para demostrar que $(A \cup B)^C = A^C \cap B^C$, consideremos un elemento $x$ y analicemos su pertenencia a los conjuntos involucrados:
+        \begin{align*}
+            x \in(A \cup B)^C & \Longleftrightarrow x \notin A \cup B \\ 
+            & \Longleftrightarrow x \notin A \text{ y } x \notin B \\ 
+            & \Longleftrightarrow  x \in A^C \text { y } x \in B^C \\ 
+            & \Longleftrightarrow x \in A^C \cap B^C
+        \end{align*}
+        \item Para demostrar que $(A \cap B)^C = A^C \cup B^C$, consideremos un elemento $x$ y analicemos su pertenencia a los conjuntos involucrados:
+        \begin{align*}
+            x \in(A \cap B)^C & \Longleftrightarrow x \notin A \cap B \\ 
+            & \Longleftrightarrow x \notin A \text{ y } x \notin B \\ 
+            & \Longleftrightarrow  x \in A^C \text { o } x \in B^C \\ 
+            & \Longleftrightarrow x \in A^C \cup B^C
+        \end{align*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{prop}{}{}
+    Si $A$, $B$, $C$ y $D$ son conjuntos y $S$ es el conjunto universal, entonces:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item $A - B = A - (A \cap B)$.
+        \item $(A \cap B = \varnothing$ y $A \cup B = S) \Longrightarrow B = A^C$.
+        \item $A - B = A \Longleftrightarrow B - A = B$.
+        \item $(A \cup B) - (A \cap B) = (A - B) \cup(B - A)$.
+    \end{enumerate}
+    \tcblower
+    \demostracion Se dejan como ejercicio al lector.
+\end{prop}
+
+\newpage
+
+\subsection{Diagramas de Venn-Euler}
+
+En los diagramas de Venn-Euler, a un conjunto no vacío se le representa con una figura cerrada, dentro de un rectángulo que representa el conjunto universal y se utilizan para comparar, contrastar y analizar la intersección, la unión y la diferencia de dichos conjuntos.
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \coordinate (A) at (-2.2,0);
+        \coordinate (B) at (3,0.5);
+        \coordinate (C) at (0.5,-0.3);
+        \draw[thick] (-4.5,-2) rectangle (4.5,2);
+        \draw[cw0] (A) circle (1.2cm) node {$A$};
+        \draw[cw0!75] (B) circle (0.9cm) node {$B$};
+        \draw[cw0!50] (C) circle (0.6cm) node {$C$};
+    \end{tikzpicture}
+    \caption{Ejemplo de diagrama de Venn-Euler que muestra tres conjuntos $A$, $B$ y $C$ dentro de un conjunto universal $S$. El conjunto $A$ está representado por el círculo más grande a la izquierda, el conjunto $B$ por el círculo mediano a la derecha, y el conjunto $C$ por el círculo más pequeño en el centro.}
+\end{figure}
+
+\noindent Las intersecciones entre las figuras se utilizan para mostrar la relación entre estos conjuntos, ya sea para señalar la presencia de elementos comunes o para evidenciar su exclusividad. Además, podemos hacer diagramas de las operaciones antes vistas:
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(0:2cm) circle (1.5cm)}
+
+\colorlet{circle edge}{cw0}
+\colorlet{circle area}{cw0!70}
+
+\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},outline/.style={draw=circle edge, thick}}
+
+\begin{figure*}[h!]
+    \centering
+    \subfloat[$A \cup B$]{
+    \begin{tikzpicture}
+        \draw[filled] \firstcircle node[white] {$A$}
+        \secondcircle node[white] {$B$};
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A \cap B$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \fill[filled] \secondcircle;
+        \end{scope}
+        \draw[outline] \firstcircle node {$A$};
+        \draw[outline] \secondcircle node {$B$};
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A-B$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \draw[filled, even odd rule] \firstcircle node[white] {$A$}
+            \secondcircle;
+        \end{scope}
+        \draw[outline] \firstcircle
+        \secondcircle node {$B$};
+    \end{tikzpicture}
+    } \\
+    \subfloat[$B-A$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \secondcircle;
+            \draw[filled, even odd rule] \firstcircle
+            \secondcircle node[white] {$B$};
+        \end{scope}
+        \draw[outline] \firstcircle node {$A$}
+        \secondcircle;
+        \node at (0,-2) {~};
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A^C$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \fill[cw0!70] (-2.5,-2) rectangle (2.5,2);
+            \draw[thick,cw0] (-2.5,-2) rectangle (2.5,2);
+            \fill[white] (0,0) circle (1.5cm);
+            \node at (0,0) {$A$};
+            \draw[cw0!70,thick] (0,0) circle (1.5cm);
+        \end{scope}
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[$A \subset B$]{
+    \begin{tikzpicture}
+        \begin{scope}
+            \draw[thick,cw0] (-2.5,-2) rectangle (2.5,2);
+            \node at (0.8,0.8) {$B$};
+            \draw[cw0,thick] (0,0) circle (1.5cm);
+            \node at (-0.5,-0.5) {$A$};
+            \draw[cw0,thick] (-0.5,-0.5) circle (0.6cm);
+        \end{scope}
+    \end{tikzpicture}
+    }
+    \caption{Diagramas de Venn que ilustran varias operaciones de conjuntos. (a) La unión de $A$ y $B$, representada por el área sombreada que cubre ambos conjuntos. (b) La intersección de $A$ y $B$, mostrada como el área común sombreada entre ambos conjuntos. (c) La diferencia $A - B$, que es el área de $A$ excluyendo la intersección con $B$. (d) La diferencia $B - A$, que es el área de $B$ excluyendo la intersección con $A$. (e) El complemento de $A$, $A^C$, que es el área fuera del conjunto $A$ dentro del conjunto universal. (f) La relación de subconjunto $A \subset B$, donde $A$ está completamente contenido dentro de $B$.}
+\end{figure*}
+
+\subsection{Conjunto potencia y la cardinalidad de un conjunto}
+
+\begin{definicion}{}{}
+    Sea $A$ un conjunto. Se define el conjunto potencia de $A$, denotado por $\wp(A)$ o por $2^A$, como el conjunto
+    $$\wp(A) = \{B \mid B \subset A\}.$$
+\end{definicion}
+
+\newpage
+
+Observemos que
+\begin{enumerate}
+    \item Por definición, $B \subset A \Longleftrightarrow B \in \wp(A)$.
+    \item Para cualquier conjunto $A$, se cumple que $\varnothing \in \wp(A)$ y $A \in \wp(A)$.
+    \item $a \in A \Longleftrightarrow \{a\} \in \wp(A)$.
+\end{enumerate}
+
+\begin{examplebox}{}{}
+    Si $A = \{0, 1\}$, entonces
+    $$\wp(A) = \big\{\varnothing, \{0\}, \{1\}, A \big\}.$$
+\end{examplebox}
+
+\begin{theorem}{}{}
+    Si $X$ y $Y$ son conjuntos, entonces
+    $$X \subset Y \Longleftrightarrow \wp(X) \subset \wp(Y).$$
+    \tcblower
+    \demostracion Procedamos por casos.
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Probemos primero que $X \subset Y \Longrightarrow \wp(X) \subset$ $\wp(Y)$: Si $A \in \wp(X)$, entonces $A \subset X$, y como por hipótesis $X \subset Y$, entonces $A \subset Y$, entonces $A \in \wp(Y)$.
+        \item Ahora probaremos que $\wp(X) \subset \wp(Y) \Longrightarrow X \subset Y$: Si $x \in X$, entonces $\{x\} \in \wp(X)$, y como por hipótesis $\wp(X) \subset \wp(Y)$, entonces $\{x\} \in \wp(Y)$, entonces $x \in Y$.
+    \end{enumerate}
+\end{theorem}
+
+La \emph{cardinalidad} de un conjunto permite cuantificar y comparar el tamaño de diferentes colecciones de elementos, tanto finitos como infinitos.
+
+\begin{definicion}{}{}
+    Dado un conjunto $A$, definimos su \emph{cardinalidad}, denotado por $|A|$, de la siguiente manera:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Si $A$ es \emph{finito}, entonces $|A|$ es simplemente el número de elementos en $A$.
+        \item Si $A$ es \emph{infinito}, se define su cardinalidad mediante el concepto de \emph{equipotencia} o correspondencia biyectiva con otros conjuntos.
+    \end{enumerate}
+\end{definicion}
+\infoBulle{Para un estudio detallado, recomendamos las obras clásicas \emph{Naïve Set Theory} de Paul R. Halmos y \emph{Set Theory and Its Philosophy} de Michael Potter.}
+
+Mientras para conjuntos finitos la noción es intuitiva y aritmética, para conjuntos infinitos requiere herramientas más sofisticadas de la teoría de conjuntos. Aunque en esta obra no profundizaremos en los detalles de la \emph{equipotencia} ni en la jerarquía de \emph{cardinales transfinitos} (como $\aleph_1$, $\aleph_2$, etc.), es importante señalar que estos conceptos revolucionaron la comprensión matemática del infinito.
+
+\begin{examplebox}{}{}
+    \begin{enumerate}[topsep=6pt, itemsep=0pt]
+        \item El conjunto vacío, carente de elementos, satisface $| \varnothing | = 0$ por definición.
+        \item Si $A = \{a, b, c, d, e\}$, entonces $|A| = 5$.
+        \item Si $C = \NN$, su cardinalidad es infinita y se denota como $\aleph_0$ (aleph-cero).
+    \end{enumerate}
+\end{examplebox}
+
+\begin{definicion}{}{}
+    Un conjunto $A$ es \emph{numerable} si $|A| = |\NN|$.
+\end{definicion}
+
+La numerabilidad implica que, aunque un conjunto sea infinito, sus elementos pueden ser sistemáticamente enumerados. Este resultado, establecido por Georg Cantor, desafía la intuición al mostrar que conjuntos aparentemente “más grandes” como los enteros o racionales comparten la misma cardinalidad que los naturales.
+
+\begin{definicion}{}{}
+    Si el conjunto $A$ es finito y numerable, entonces $A$ es un \emph{conjunto discreto}.
+\end{definicion}
+
+\section{Espacio muestral}
+
+Al inicio de este capítulo nos referimos al \emph{experimento} de lanzar una moneda y observar qué cara aparecía. Usaremos este término para referirnos tanto a situaciones incontrolables (como el precio diario de una acción) como a observaciones en condiciones controladas de laboratorio. Tenemos la siguiente definición:
+
+\newpage
+
+\begin{definicion}{}{}
+    Un \emph{experimento} es el proceso por medio del cual se hace una observación.
+\end{definicion}
+
+Ejemplos de experimentos incluyen el tiro de monedas y dados, medir el cociente de inteligencia (IQ) de una persona o determinar el número de bacterias por centímetro cúbico en una porción de alimento procesado.
+
+\begin{definicion}{}{}
+    Al conjunto de todos los resultados posibles de un experimento se le llama \emph{espacio muestral} y se representa con el símbolo $S$.
+\end{definicion}
+
+A cada resultado en un espacio muestral se le llama \emph{elemento} o \emph{miembro} del espacio muestral. Si el espacio muestral tiene un número finito de elementos, podemos listar los miembros separados por comas y encerrarlos entre llaves. Por consiguiente, el espacio muestral $S$, de los resultados posibles cuando se lanza una moneda al aire, se puede escribir como
+$$S = \left\{ \text{sol}, \text{águila} \right\} .$$
+\begin{examplebox}{}{primer_ejemplo}
+    Considere el experimento de lanzar un dado. Si nos interesara el número que aparece en la cara superior, el espacio muestral sería
+    $$S_1 = \left\{ 1, 2, 3, 4, 5, 6 \right\}.$$
+    Si sólo estuviéramos interesados en si el número es par o impar, el espacio muestral sería simplemente
+    $$S_2 = \left\{ \text{par}, \text{impar} \right\}.$$
+\end{examplebox}
+
+El ejemplo anterior ilustra el hecho de que se puede usar más de un espacio muestral para describir los resultados de un experimento. En este caso, $S_1$ brinda más información que $S_2$. Si sabemos cuál elemento ocurre en $S_1$, podremos indicar cuál resultado tiene lugar en $S_2$; no obstante, saber lo que pasa en $S_2$ no ayuda mucho a determinar qué elemento ocurre en $S_1$. En general, lo deseable sería utilizar un espacio muestral que proporcione la mayor información acerca de los resultados del experimento. En algunos experimentos es útil listar los elementos del espacio muestral de forma sistemática utilizando un \emph{diagrama de árbol}.
+
+\begin{examplebox}{}{}
+    Un experimento consiste en lanzar una moneda y después lanzarla una segunda vez si sale sol. Si en el primer lanzamiento sale águila, entonces se lanza un dado una vez. Para listar los elementos del espacio muestral que proporciona la mayor información construimos el diagrama de árbol de la figura \ref{fig:diagrama_de_arbol}.
+    \begin{center}
+        \begin{tikzpicture}[grow=right,-latex,>=angle 60]
+            \node {\makecell{Lanzar una \\ moneda}}
+                child {node {\makecell{águila \\ (A)}}
+                    child {node {6}
+                        child[draw=white,-] {node{A6}}
+                    }
+                    child {node {5}
+                        child[draw=white,-] {node{A5}}
+                    }
+                    child {node {4}
+                        child[draw=white,-] {node{A4}}
+                    }
+                    child {node {3}
+                        child[draw=white,-] {node{A3}}
+                    }
+                    child {node {2}
+                        child[draw=white,-] {node{A2}}
+                    }
+                    child {node{1}
+                        child[draw=white,-] {node{A1}}
+                    }
+                }
+                child {node {\makecell{sol \\ (S)}}
+                    child {node{A}
+                        child[draw=white,-] {node{SA}}
+                    }
+                    child {node{S}
+                        child[draw=white,-] {node{SS}}
+                    }
+                };
+            \end{tikzpicture}
+        \captionsetup*[figure]{hypcap=false}
+        \captionof{figure}{Diagrama de árbol}\label{fig:diagrama_de_arbol}
+    \end{center}
+    Si empezamos con la rama superior izquierda y nos movemos a la derecha a lo largo de la primera trayectoria, obtenemos el elemento SS, que indica la posibilidad de que ocurran caras en dos lanzamientos sucesivos de la moneda. De igual manera, el elemento A3 indica la posibilidad de que la moneda muestre un águila seguida por un 3 en el lanzamiento del dado. Al seguir todas las trayectorias, vemos que el espacio muestral es
+    $$S = \left\{ \text{SS, SA, A1, A2, A3, A4, A5, A6} \right\} .$$
+\end{examplebox}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Consideremos un lote de tornillos del cual se extrae uno sin reemplazo para verificar su diámetro. Si el diámetro está dentro del rango especificado, se considera un \emph{éxito}, representado por $E$; en caso contrario, se obtiene un \emph{fracaso}, denotado por $F$. El proceso continúa hasta que ocurre el primer fracaso. En este caso, el espacio muestral está dado por:
+    $$S = \{ F, EF, EEF, EEEF, \dots \}.$$
+\end{examplebox}
+
+Muchos de los conceptos de este capítulo se ilustran mejor con ejemplos que involucran el uso de dados y cartas. Es particularmente importante utilizar estas aplicaciones al comenzar el proceso de aprendizaje, ya que facilitan el flujo de esos conceptos nuevos en ejemplos científicos y de ingeniería.
+
+\section{Eventos}
+
+En cualquier experimento dado, podríamos estar interesados en la ocurrencia de ciertos \emph{eventos}, más que en la ocurrencia de un elemento específico en el espacio muestral. Por ejemplo, quizás estemos interesados en el evento $A$, en el cual el resultado de lanzar un dado es divisible entre 3. Esto ocurrirá si el resultado es un elemento del subconjunto $A = \{3, 6\}$ del espacio muestral $S_1$ del ejemplo \ref{examplebox:primer_ejemplo}.
+
+Para cada evento asignamos un conjunto de elementos, que constituye un
+subconjunto del espacio muestral. Este subconjunto representa la totalidad de los elementos para los que el evento es cierto.
+
+\begin{definicion}{}{}
+    Un \emph{evento} es un subconjunto de un espacio muestral.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Dado el espacio muestral $S = \{t \mid t \geq 0\}$, donde $t$ es la vida en años de cierto componente electrónico, el evento $A$ de que el componente falle antes de que finalice el quinto año es el subconjunto $A = \{t \mid 0 \leq t < 5\}$.
+\end{examplebox}
+
+\begin{definicion}{}{}
+    Un \emph{evento simple} no se puede descomponer. Cada evento simple corresponde a un y sólo un elemento del espacio muestral.
+\end{definicion}
