@@ -627,6 +627,10 @@ El ejemplo anterior ilustra el hecho de que se puede usar más de un espacio mue
 
 Muchos de los conceptos de este capítulo se ilustran mejor con ejemplos que involucran el uso de dados y cartas. Es particularmente importante utilizar estas aplicaciones al comenzar el proceso de aprendizaje, ya que facilitan el flujo de esos conceptos nuevos en ejemplos científicos y de ingeniería.
 
+\begin{definicion}{}{}
+    Un \emph{espacio muestral discreto} es aquel que está formado ya sea por un número finito o uno contable de puntos muestrales distintos.
+\end{definicion}
+
 \section{Eventos}
 
 En cualquier experimento dado, podríamos estar interesados en la ocurrencia de ciertos \emph{eventos}, más que en la ocurrencia de un elemento específico en el espacio muestral. Por ejemplo, quizás estemos interesados en el evento $A$, en el cual el resultado de lanzar un dado es divisible entre 3. Esto ocurrirá si el resultado es un elemento del subconjunto $A = \{3, 6\}$ del espacio muestral $S_1$ del ejemplo \ref{examplebox:primer_ejemplo}.
@@ -635,13 +639,143 @@ Para cada evento asignamos un conjunto de elementos, que constituye un
 subconjunto del espacio muestral. Este subconjunto representa la totalidad de los elementos para los que el evento es cierto.
 
 \begin{definicion}{}{}
-    Un \emph{evento} es un subconjunto de un espacio muestral.
+    Un \emph{evento} es un subconjunto de un espacio muestral. Además, en particular, un \emph{evento simple} no se puede descomponer. Cada evento simple corresponde a un y sólo un elemento del espacio muestral.
 \end{definicion}
 
 \begin{examplebox}{}{}
     Dado el espacio muestral $S = \{t \mid t \geq 0\}$, donde $t$ es la vida en años de cierto componente electrónico, el evento $A$ de que el componente falle antes de que finalice el quinto año es el subconjunto $A = \{t \mid 0 \leq t < 5\}$.
 \end{examplebox}
 
+Es posible concebir que un evento puede ser un subconjunto que incluye todo el espacio muestral $S$, o un subconjunto de $S$ que se denomina conjunto vacío y se denota con el símbolo $\varnothing$, que no contiene ningún elemento. Por ejemplo, si en un experimento biológico permitimos que $A$ sea el evento de detectar un organismo microscópico a simple vista, entonces $A = \varnothing$. También, si
+$$B = \left\{ x \mid x \text{ es un factor par de } 7 \right\},$$
+entonces $B$ debe ser el conjunto vacío, pues los únicos factores posibles de 7 son los números nones 1 y 7.
+
+Considere un experimento en el que se registran los hábitos de tabaquismo de los empleados de una empresa industrial. Un posible espacio muestral podría clasificar a un individuo como no fumador, fumador ocasional, fumador moderado o fumador empedernido. Si se determina que el subconjunto de los fumadores sea un evento, entonces la totalidad de los no fumadores corresponderá a un evento diferente, también subconjunto de $S$, que se denomina complemento del conjunto de fumadores.
+
 \begin{definicion}{}{}
-    Un \emph{evento simple} no se puede descomponer. Cada evento simple corresponde a un y sólo un elemento del espacio muestral.
+    El complemento de un evento $A$ respecto de $S$ es el subconjunto de todos los elementos de $S$ que no están en $A$. Denotamos el complemento de $A$ mediante el símbolo $A^C$.
 \end{definicion}
+
+\newpage
+
+\begin{examplebox}{}{}
+    Sea $R$ el evento de que se seleccione una carta roja de una baraja ordinaria de 52 cartas, y sea $S$ toda la baraja. Entonces $R^C$ es el evento de que la carta seleccionada de la baraja no sea una roja sino una negra.
+\end{examplebox}
+
+\begin{definicion}{}{}
+    La intersección de dos eventos $A$ y $B$, que se denota con el símbolo $A \cap B$, es el evento que contiene todos los elementos que son comunes entre $A$ y $B$.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Sea $E$ el evento de que una persona seleccionada al azar en un salón de clases sea estudiante de ingeniería, y sea $F$ el evento de que la persona sea mujer. Entonces $E \cap F$ es el evento de todas las estudiantes mujeres de ingeniería en el salón de clases.
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Sean $V = \{ a, e, i, o, u \}$ y $C = \{l, r, s, t \}$; entonces, se deduce que $V \cap C = \varnothing$. Es decir, $V$ y $C$ no tienen elementos comunes, por lo tanto, no pueden ocurrir de forma simultánea.
+\end{examplebox}
+
+Para ciertos experimentos estadísticos no es nada extraño definir dos eventos, $A$ y $B$, que no pueden ocurrir de forma simultánea. Se dice entonces que los eventos $A$ y $B$ son mutuamente excluyentes. Expresado de manera más formal, tenemos la siguiente definición:
+
+\begin{definicion}{}{}
+    Dos eventos $A$ y $B$ son mutuamente excluyentes o disjuntos si $A \cap B = \varnothing$; es decir, si $A$ y $B$ no tienen elementos en común.
+\end{definicion}
+
+A menudo nos interesamos en la ocurrencia de al menos uno de dos eventos asociados con un experimento. Por consiguiente, en el experimento del lanzamiento de un dado, si
+$$A = \{ 2, 4, 6 \} \quad \text{ y } \quad B = \{ 4, 5, 6 \},$$
+podríamos estar interesados en que ocurran $A$ o $B$, o en que ocurran tanto $A$ como $B$. Tal evento, que se llama unión de $A$ y $B$, ocurrirá si el resultado es un elemento del subconjunto $\{2, 4, 5, 6\}$.
+
+\begin{definicion}{}{}
+    La unión de dos eventos $A$ y $B$, que se denota con el símbolo $A \cup B$, es el evento que contiene todos los elementos que pertenecen a $A$ o a $B$, o a ambos.
+\end{definicion}
+
+\begin{examplebox}{}{}
+    Sea $P$ el evento de que un empleado de una empresa petrolera seleccionado al azar fume cigarrillos. Sea $Q$ el evento de que el empleado seleccionado ingiera bebidas alcohólicas. Entonces, el evento $P \cup Q$ es el conjunto de todos los empleados que beben o fuman, o que hacen ambas cosas.
+\end{examplebox}
+
+\section{Probabilidad de un evento}
+
+Quizá fue la insaciable sed del ser humano por el juego lo que condujo al desarrollo temprano de la teoría de la probabilidad. En un esfuerzo por aumentar sus triunfos, algunos pidieron a los matemáticos que les proporcionaran las estrategias óptimas para los diversos juegos de azar. Algunos de los matemáticos que brindaron tales estrategias fueron Pascal, Leibniz, Fermat y James Bernoulli. Como resultado de este desarrollo inicial de la teoría de la probabilidad, la inferencia estadística, con todas sus predicciones y generalizaciones, ha rebasado el ámbito de los juegos de azar para abarcar muchos otros campos asociados con los eventos aleatorios, como la política, los negocios, el pronóstico del clima y la investigación científica. Para que estas predicciones y generalizaciones sean razonablemente precisas, resulta esencial la comprensión de la teoría básica de la probabilidad.
+
+En el resto de este capítulo consideraremos sólo aquellos experimentos para los cuales el espacio muestral contiene un número finito de elementos. La probabilidad de la ocurrencia de un evento que resulta de tal experimento estadístico se evalúa utilizando un conjunto de números reales denominados \emph{probabilidades}, que van de 0 a 1. Para todo elemento en el espacio muestral asignamos una probabilidad tal que la suma de todas las probabilidades es 1. Si tenemos razón para creer que al llevar a cabo el experimento es bastante probable que ocurra cierto elemento, le tendríamos que asignar a éste una probabilidad cercana a 1. Por el contrario, si creemos que no hay probabilidades de que ocurra cierto elemento, le tendríamos que asignar a éste una probabilidad cercana a cero. En muchos experimentos, como lanzar una moneda o un dado, todos los elementos tienen la misma oportunidad de ocurrencia, por lo tanto, se les asignan probabilidades iguales. A los elementos fuera del espacio muestral, es decir, a los eventos simples que no tienen posibilidades de ocurrir, les asignamos una probabilidad de cero.
+
+Para encontrar la probabilidad de un evento $A$ sumamos todas las probabilidades que se asignan a los elementos en $A$. Esta suma se denomina probabilidad de $A$ y se denota con $P(A)$.
+
+Para medir la probabilidad de que ocurra un evento específico, necesitamos una herramienta matemática que nos permita cuantificar esta incertidumbre. Aquí es donde entra en juego la \emph{función de probabilidad}. Esta función nos proporciona una manera sistemática de asignar un valor numérico a la probabilidad de cada posible resultado de un experimento aleatorio. En términos simples, la función de probabilidad nos ayuda a medir cuán probable es que ocurra un evento dado.
+
+Un modelo probabilístico para un experimento con un espacio muestral discreto se puede construir al asignar una probabilidad numérica a cada evento simple del espacio muestral $S$. Seleccionaremos este número, una medida de nuestra creencia en que ocurrirá el evento en una sola repetición del experimento, de forma tal que será consistente con el concepto de frecuencia relativa de probabilidad. Aun cuando la frecuencia relativa no da una definición rigurosa de probabilidad, cualquier definición aplicable al mundo real debe concordar con nuestra noción intuitiva de las frecuencias relativas de eventos. Al analizar el concepto de frecuencia relativa de probabilidad, vemos que deben cumplirse tres condiciones.
+\begin{enumerate}
+    \item La frecuencia relativa de que ocurra cualquier evento debe ser mayor o igual a cero. Una frecuencia relativa negativa no tiene sentido.
+    \item La frecuencia relativa de todo el espacio muestral $S$ debe ser la unidad. Debido a que todo posible resultado del experimento es un punto en $S$, se deduce que $S$ debe ocurrir cada vez que se realice el experimento.
+    \item Si dos eventos son mutuamente excluyentes, la frecuencia relativa de la unión de ambos es la suma de sus respectivas frecuencias relativas.
+\end{enumerate}
+Estas tres condiciones forman la base de la siguiente definición.
+
+\begin{definicion}{}{def_func_prob}
+    Sea $S$ un espacio muestral y $\wp(S)$ el conjunto potencia de $S$. Definimos la función de probabilidad $P: \wp(S) \longrightarrow [0, 1]$, tal que cumple los siguientes tres axiomas:
+    \begin{enumerate}[label=\roman*., topsep=6pt, itemsep=0pt]
+        \item Para cualquier evento $A$, se tiene que $P(A) \geq 0$.
+        \item La suma de las probabilidades de todos los eventos posibles debe ser igual a 1, es decir, $P(S) = 1$.
+        \item Si $A_1, A_2, A_3, \dots$ son eventos disjuntos, $\displaystyle P\left( \bigcup_{i = 1}^{\infty} A_i \right) = \sum_{i = 1}^{\infty} P(A_i)$.
+    \end{enumerate}
+\end{definicion}
+
+Observemos que la probabilidad del conjunto vacío $\varnothing$ es igual a 0, es decir, $P(\varnothing) = 0$. Esto se debe a que el conjunto vacío no contiene ningún evento posible, por lo tanto, la probabilidad de que ocurra un evento en el conjunto vacío es nula. Si el lector aún no entiende lo anteriormente dicho, esto será mucho más claro con los ejemplos siguientes y cuando presentemos la definición \ref{definicion:probabilidadnN}.
+
+\newpage
+
+Podemos fácilmente demostrar que el axioma 3 de la definición \ref{definicion:def_func_prob}, que está expresado en términos de una sucesión infinita de eventos, implica una propiedad similar para una sucesión finita. Específicamente, si $A_1, A_2, \dots, A_n$ son eventos mutuamente excluyentes por pares, entonces
+$$P\left( \bigcup_{i = 1}^{n} A_i \right) = \sum_{i = 1}^{n} P(A_i).$$
+La definición expresa solo las condiciones que una asignación de probabilidades debe satisfacer: no indica cómo asignar probabilidades específicas a los eventos.
+
+\begin{examplebox}{}{}
+    Una moneda se lanza dos veces. ¿Cuál es la probabilidad de que salga al menos un sol (S)?
+    
+    \tcblower
+    \solucion El espacio muestral para este experimento es
+    $$S = \{ \text{SS, SA, AS, AA} \}.$$
+    Si la moneda está balanceada, cada uno de estos resultados tendrá las mismas probabilidades de ocurrir. Por lo tanto, asignamos una probabilidad de $s$ a cada uno de los elementos. Entonces, $4s = 1$ o $s = 1/4$. Si $A$ representa el evento de que salga al menos un sol (S), entonces
+    $$A = \{ \text{SS, SA, AS} \} \quad \text{ y } \quad P(A) = \frac{1}{4} + \frac{1}{4} + \frac{1}{4} = \frac{3}{4}.$$
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    Se carga un dado de forma que exista el doble de probabilidades de que salga un número par que uno impar. Si $E$ es el evento de que ocurra un número menor que 4 en un solo lanzamiento del dado, calcule $P(E)$.
+    
+    \tcblower
+    \solucion Es claro que el espacio muestral es $S = \{1, 2, 3, 4, 5, 6\}$. Asignamos una probabilidad de $s$ a cada número impar y una probabilidad de $2s$ a cada número par. Como la suma de las probabilidades debe ser 1, tenemos
+    $$s + 2s + s + 2s + s + 2s = 9s = 1,$$
+    o bien, $s = 1/9$. Por lo tanto, asignamos probabilidades de $1/9$ y $2/9$ a cada número impar y par, respectivamente. Por consiguiente,
+    $$E = \{ 1, 2, 3 \} \quad \text{ y } \quad P(E) = \frac{1}{9} + \frac{2}{9} + \frac{1}{9} = \frac{4}{9}.$$
+\end{examplebox}
+
+\begin{examplebox}{}{}
+    En el ejemplo anterior, sea $A$ el evento de que resulte un número par y sea $B$ el evento de que resulte un número divisible entre 3. Calcule $P(A \cup B)$ y $P(A \cap B)$.
+    
+    \tcblower
+    \solucion Es claro que los eventos son $A = \{2, 4, 6\}$ y $B = \{3, 6\}$. Así que tenemos,
+    $$A \cup B = \{ 2, 3, 4, 6 \} \quad \text{ y } \quad A \cap B = \{ 6 \}.$$
+    Al asignar una probabilidad de $1/9$ a cada número impar y de $2/9$ a cada número par, tenemos
+    $$P(A \cup B) = \frac{2}{9} + \frac{1}{9} + \frac{2}{9} + \frac{2}{9} = \frac{7}{9} \quad \text{ y } \quad P(A \cap B) = \frac{2}{9}.$$
+\end{examplebox}
+
+Si el espacio muestral para un experimento contiene $N$ elementos, todos los cuales tienen las mismas probabilidades de ocurrir, asignamos una probabilidad igual a $1/N$ a cada uno de los $N$ elementos. La probabilidad de que cualquier evento $A$ contenga $n$ de estos $N$ elementos es entonces el cociente del número de elementos en $A$ y el número de elementos en $S$.
+
+\begin{definicion}{}{probabilidadnN}
+    Si un experimento puede dar como resultado cualquiera de $N$ diferentes resultados que tienen las mismas probabilidades de ocurrir, y si exactamente $n$ de estos resultados corresponden al evento $A$, entonces la probabilidad del evento $A$ es
+    $$P(A) = \frac{n}{N}.$$
+\end{definicion}
+
+\begin{examplebox}{}{}
+    A una clase de estadística para ingenieros asisten 25 estudiantes de ingeniería industrial, 10 de ingeniería mecánica, 10 de ingeniería eléctrica y 8 de ingeniería civil. Si el profesor elige al azar a un estudiante para que conteste una pregunta, ¿qué probabilidades hay de que el elegido sea
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item estudiante de ingeniería industrial,
+        \item estudiante de ingeniería civil o estudiante de ingeniería eléctrica?
+    \end{enumerate}
+    \tcblower
+    \solucion Asignemos las especialidades de los estudiantes de ingeniería industrial, mecánica, eléctrica y civil por las letras $I$, $M$, $E$ y $C$, respectivamente. El grupo está integrado por 53 estudiantes y todos tienen las mismas probabilidades de ser seleccionados.
+    \begin{enumerate}[label=\alph*), topsep=6pt, itemsep=0pt]
+        \item Como 25 de los 53 individuos estudian ingeniería industrial, la probabilidad del evento $I$, es decir, la de elegir al azar a alguien que estudia ingeniería industrial, es
+        $$P(I) = \frac{25}{53}.$$
+        \item Como 18 de los 53 estudiantes son de las especialidades de ingeniería civil o eléctrica, se deduce que
+        $$P(C \cup E) = \frac{18}{53}.$$
+    \end{enumerate}
+\end{examplebox}
